@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <View
+        android:id="@+id/kitt_rich_cancle1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#17499b" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#4598a2" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#e6a20a" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#cb2635" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#a96e99" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#999999" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#d85821" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#eb3130" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#7417f3" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#3eabe1" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#76b53b" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#ad8265" />
+
+        <knight.rider.kitt.rich.RoundImage
+            android:id="@+id/kitt_rich_round14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ui_round_color="#bb5e60" />
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/kitt_rich_cancle4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+</LinearLayout>

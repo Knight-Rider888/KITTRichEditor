@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KITTRichEditor.iml" filepath="$PROJECT_DIR$/.idea/modules/KITTRichEditor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RICHEDITOR/KITTRichEditor.RICHEDITOR.iml" filepath="$PROJECT_DIR$/.idea/modules/RICHEDITOR/KITTRichEditor.RICHEDITOR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/KITTRichEditor.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/KITTRichEditor.app.iml" />
+    </modules>
+  </component>
+</project>

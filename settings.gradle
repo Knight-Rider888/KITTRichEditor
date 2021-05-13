@@ -1,0 +1,3 @@
+include ':RICHEDITOR'
+include ':app'
+rootProject.name = "KITTRichEditor"

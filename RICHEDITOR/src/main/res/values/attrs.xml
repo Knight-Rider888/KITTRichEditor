@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RoundImage">
+        <attr name="ui_round_color" format="color|reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="XRichTextEditor">
+        <attr name="x_rich_padding" format="dimension" />
+        <attr name="x_rich_paddingLeft" format="dimension" />
+        <attr name="x_rich_paddingRight" format="dimension" />
+        <attr name="x_rich_paddingTop" format="dimension" />
+        <attr name="x_rich_paddingBottom" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RichWebView">
+        <attr name="ui_rich_content_padding" format="dimension" />
+        <attr name="ui_rich_content_paddingLeft" format="dimension" />
+        <attr name="ui_rich_content_paddingRight" format="dimension" />
+        <attr name="ui_rich_content_paddingTop" format="dimension" />
+        <attr name="ui_rich_content_paddingBottom" format="dimension" />
+    </declare-styleable>
+
+</resources>
