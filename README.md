@@ -24,11 +24,11 @@ implementation 'com.github.fonuhuolian:XRichTextEditor:1.3.1'
 
 ```
 <!--可输入-->
-<org.fonuhuolian.xrichtexteditor.XRichTextEditor
+<knight.rider.kitt.rich.RichTextEditor
   android:id="@+id/editor"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  app:x_rich_padding="10dp"/>
+  app:ui_rich_padding="20dp"/>
 ```
 ```
 <!--不可输入-->
@@ -43,14 +43,16 @@ implementation 'com.github.fonuhuolian:XRichTextEditor:1.3.1'
 ```
 // ******可输入******
 // 富文本导航栏点击图片按钮的事件
-xEditor.setListener(new XRichPicIconClickListener() {
+xEditor.setOnInsertImageListener(new OnInsertImageIconClickListener() {
   @Override
-  public void clickPicIcon() {
+  public void insertClick() {
     // 根据实际情况选择图片的逻辑操作
     // 成功后调用方法插入图片
-    xEditor.insertImage(url, "pic\" style=\"max-width:98%");
+    xEditor.insertImage(url);
   }
 );
+// 设置编辑器无数据时显示的提示内容
+richWebview.setHint();
 // 设置富文本内容
 xEditor.setContent();
 // 富文本内容是否加载完成
@@ -58,9 +60,9 @@ xEditor.isLoadComplete();
 // 获取富文本的html文本
 xEditor.getHtmlText();
 // 转换成Email样式的html文本
-XRichTextEditor.covertEmailHtml(String quotations, String contentHtml);
+RichTextEditor.covertEmailHtml(String quotations, String emailHtml);
 // 超文本转换为普通文字
-XRichTextEditor.convertHTMLToText(String htmlStr);
+RichTextEditor.convertHTMLToText(String htmlStr);
 // 请一定在生命周期调用同名方法
 @Override
 protected void onResume() {
@@ -81,9 +83,9 @@ richWebview.setContent();
 // 获取WebView数据
 richWebview.getHtmlText();
 // 转换成Email样式的html文本
-richWebview.covertEmailHtml(String quotations, String emailHtml);
+RichWebview.covertEmailHtml(String quotations, String emailHtml);
 // 超文本转换为普通文字
-richWebview.convertHTMLToText(String htmlStr);
+RichWebview.convertHTMLToText(String htmlStr);
 ```
 
 四、感谢 `wasabeef`提供富文本库

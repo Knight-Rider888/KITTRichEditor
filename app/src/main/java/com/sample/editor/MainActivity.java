@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import knight.rider.kitt.rich.OnInsertImageIconClickListener;
 import knight.rider.kitt.rich.RichTextEditor;
 import knight.rider.kitt.rich.RichWebView;
 
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         edit = findViewById(R.id.edit);
+        edit.setOnInsertImageListener(new OnInsertImageIconClickListener() {
+            @Override
+            public void insertClick() {
+
+            }
+        });
 
     }
 

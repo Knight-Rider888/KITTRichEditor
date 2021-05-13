@@ -1,6 +1,5 @@
 package knight.rider.kitt.rich;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -33,55 +32,41 @@ import java.util.regex.Pattern;
 
 import jp.wasabeef.richeditor.RichEditor;
 
-public class XRichTextEditor extends FrameLayout implements View.OnClickListener {
+public class RichTextEditor extends FrameLayout implements View.OnClickListener {
 
-    private Context mContext;
+    private final Context mContext;
 
-    private RichEditor mEditor;
-    private LinearLayout mLayout;
-    private FrameLayout mRootLayout;
-
-    private FrameLayout xBack;
-    private FrameLayout xGo;
-    private FrameLayout xBold;
-    private FrameLayout xUnderLine;
-    private FrameLayout xItalic;
-    private FrameLayout xSize;
-    private FrameLayout xColor;
+    private final RichEditor mEditor;
+    private final LinearLayout mLayout;
+    private final LinearLayout mRootLayout;
 
 
     private PopupWindow mPopupWindow;
     private PopupWindow mPopupWindow2;
-    private View cancle;
-    private View cancle2;
-    private int screenHeight;
+    private View mCancel;
+    private View mCancel2;
+    private final int screenHeight;
     private String htmlText;
-    private RichPicIconClickListener listener;
+    private OnInsertImageIconClickListener listener;
 
     private boolean isLoadComplete = false;
-    private boolean isRevised = false;
 
     private int RICK_LAYOUT_HEIGHT = 0;
 
-    private SoftKeyBroadManager mKeyboardListener;
+    private final SoftKeyBroadManager mKeyboardListener;
 
-    public XRichTextEditor(Context context) {
+    public RichTextEditor(Context context) {
         this(context, null);
     }
 
-    public XRichTextEditor(Context context, @Nullable AttributeSet attrs) {
+    public RichTextEditor(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
-
-
     }
 
-    public XRichTextEditor(final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public RichTextEditor(final Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         mContext = context;
-
-
-        ((Activity) context).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         // 获取屏幕像素高
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -93,37 +78,37 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         // 加载布局
         LayoutInflater.from(context).inflate(R.layout.kitt_rich_text_editor, this, true);
         mLayout = ((LinearLayout) this.findViewById(R.id.kitt_rich_layout));
-        mRootLayout = ((FrameLayout) this.findViewById(R.id.rootLayout));
+        mRootLayout = this.findViewById(R.id.rootLayout);
 
         // 编辑器
         mEditor = ((RichEditor) this.findViewById(R.id.kitt_rich_editor));
         mEditor.setFontSize(3);
         mEditor.setEditorFontColor(Color.parseColor("#999999"));
 
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.XRichTextEditor);
-        float padding = ta.getDimension(R.styleable.XRichTextEditor_x_rich_padding, 0);
-        float paddingLeft = ta.getDimension(R.styleable.XRichTextEditor_x_rich_paddingLeft, 0);
-        float paddingRight = ta.getDimension(R.styleable.XRichTextEditor_x_rich_paddingRight, 0);
-        float paddingTop = ta.getDimension(R.styleable.XRichTextEditor_x_rich_paddingTop, 0);
-        float paddingBottom = ta.getDimension(R.styleable.XRichTextEditor_x_rich_paddingBottom, 0);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RichTextEditor);
+        float padding = ta.getDimension(R.styleable.RichTextEditor_ui_rich_padding, 0);
+        float paddingLeft = ta.getDimension(R.styleable.RichTextEditor_ui_rich_paddingLeft, 0);
+        float paddingRight = ta.getDimension(R.styleable.RichTextEditor_ui_rich_paddingRight, 0);
+        float paddingTop = ta.getDimension(R.styleable.RichTextEditor_ui_rich_paddingTop, 0);
+        float paddingBottom = ta.getDimension(R.styleable.RichTextEditor_ui_rich_paddingBottom, 0);
 
-        if (ta.getText(R.styleable.XRichTextEditor_x_rich_padding) != null && ta.getText(R.styleable.XRichTextEditor_x_rich_padding).toString().endsWith("dip")) {
+        if (ta.getText(R.styleable.RichTextEditor_ui_rich_padding) != null && ta.getText(R.styleable.RichTextEditor_ui_rich_padding).toString().endsWith("dip")) {
             padding = padding / density;
         }
 
-        if (ta.getText(R.styleable.XRichTextEditor_x_rich_paddingLeft) != null && ta.getText(R.styleable.XRichTextEditor_x_rich_paddingLeft).toString().endsWith("dip")) {
+        if (ta.getText(R.styleable.RichTextEditor_ui_rich_paddingLeft) != null && ta.getText(R.styleable.RichTextEditor_ui_rich_paddingLeft).toString().endsWith("dip")) {
             paddingLeft = paddingLeft / density;
         }
 
-        if (ta.getText(R.styleable.XRichTextEditor_x_rich_paddingRight) != null && ta.getText(R.styleable.XRichTextEditor_x_rich_paddingRight).toString().endsWith("dip")) {
+        if (ta.getText(R.styleable.RichTextEditor_ui_rich_paddingRight) != null && ta.getText(R.styleable.RichTextEditor_ui_rich_paddingRight).toString().endsWith("dip")) {
             paddingRight = paddingRight / density;
         }
 
-        if (ta.getText(R.styleable.XRichTextEditor_x_rich_paddingTop) != null && ta.getText(R.styleable.XRichTextEditor_x_rich_paddingTop).toString().endsWith("dip")) {
+        if (ta.getText(R.styleable.RichTextEditor_ui_rich_paddingTop) != null && ta.getText(R.styleable.RichTextEditor_ui_rich_paddingTop).toString().endsWith("dip")) {
             paddingTop = paddingTop / density;
         }
 
-        if (ta.getText(R.styleable.XRichTextEditor_x_rich_paddingBottom) != null && ta.getText(R.styleable.XRichTextEditor_x_rich_paddingBottom).toString().endsWith("dip")) {
+        if (ta.getText(R.styleable.RichTextEditor_ui_rich_paddingBottom) != null && ta.getText(R.styleable.RichTextEditor_ui_rich_paddingBottom).toString().endsWith("dip")) {
             paddingBottom = paddingBottom / density;
         }
 
@@ -144,12 +129,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-
-                if (newProgress != 100) {
-                    isLoadComplete = false;
-                } else {
-                    isLoadComplete = true;
-                }
+                isLoadComplete = newProgress == 100;
             }
         });
 
@@ -169,9 +149,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         mEditor.setOnTextChangeListener(new RichEditor.OnTextChangeListener() {
             @Override
             public void onTextChange(String text) {
-
                 htmlText = text;
-                isRevised = true;
             }
         });
 
@@ -186,17 +164,19 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         mKeyboardListener = new SoftKeyBroadManager(mContext, this).addSoftKeyboardStateListener(new SoftKeyBroadManager.SoftKeyboardStateListener() {
             @Override
             public void onSoftKeyboardOpened(int keyboardHeightInPx, int heightVisible, int statusBarHeight, int navigationBarHeight) {
-                ViewGroup.LayoutParams layoutParams = mRootLayout.getLayoutParams();
-                layoutParams.height = RICK_LAYOUT_HEIGHT - keyboardHeightInPx;
-                mRootLayout.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams layoutParams = mEditor.getLayoutParams();
+                layoutParams.height = RICK_LAYOUT_HEIGHT - keyboardHeightInPx - dp2px(context, 44);
+                mEditor.setLayoutParams(layoutParams);
             }
 
             @Override
             public void onSoftKeyboardClosed(int heightVisible, int statusBarHeight, int navigationBarHeight) {
-                ViewGroup.LayoutParams layoutParams = mRootLayout.getLayoutParams();
-                layoutParams.height = RICK_LAYOUT_HEIGHT;
-                mRootLayout.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams layoutParams = mEditor.getLayoutParams();
+                layoutParams.height = RICK_LAYOUT_HEIGHT + dp2px(context, 44);
+                mEditor.setLayoutParams(layoutParams);
                 mLayout.setVisibility(VISIBLE);
+                mPopupWindow.dismiss();
+                mPopupWindow2.dismiss();
             }
 
         });
@@ -300,8 +280,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
             }
         });
 
-        cancle = contentView.findViewById(R.id.kitt_rich_cancle4);
-        cancle.setOnClickListener(new OnClickListener() {
+        mCancel = contentView.findViewById(R.id.kitt_rich_cancle4);
+        mCancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mPopupWindow != null)
@@ -342,8 +322,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
             }
         });
 
-        cancle2 = contentView.findViewById(R.id.kitt_rich_cancle4);
-        cancle2.setOnClickListener(new OnClickListener() {
+        mCancel2 = contentView.findViewById(R.id.kitt_rich_cancle4);
+        mCancel2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mPopupWindow2 != null)
@@ -356,8 +336,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
     private void initBackAndGo() {
 
         // 撤销
-        xBack = ((FrameLayout) this.findViewById(R.id.kitt_rich_back));
-        xBack.setOnClickListener(new OnClickListener() {
+        FrameLayout back = ((FrameLayout) this.findViewById(R.id.kitt_rich_back));
+        back.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEditor.undo();
@@ -366,8 +346,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
 
 
         // 恢复
-        xGo = ((FrameLayout) this.findViewById(R.id.kitt_rich_go));
-        xGo.setOnClickListener(new OnClickListener() {
+        FrameLayout go = ((FrameLayout) this.findViewById(R.id.kitt_rich_go));
+        go.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEditor.redo();
@@ -378,16 +358,16 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
 
     private void initFontStyle() {
         // 加粗
-        xBold = ((FrameLayout) this.findViewById(R.id.kitt_rich_bold));
-        xBold.setOnClickListener(new OnClickListener() {
+        FrameLayout bold = ((FrameLayout) this.findViewById(R.id.kitt_rich_bold));
+        bold.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEditor.setBold();
             }
         });
         // 下滑线
-        xUnderLine = ((FrameLayout) this.findViewById(R.id.kitt_rich_underLine));
-        xUnderLine.setOnClickListener(new OnClickListener() {
+        FrameLayout underLine = ((FrameLayout) this.findViewById(R.id.kitt_rich_underLine));
+        underLine.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEditor.setUnderline();
@@ -395,8 +375,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
             }
         });
         // 斜体
-        xItalic = ((FrameLayout) this.findViewById(R.id.kitt_rich_italic));
-        xItalic.setOnClickListener(new OnClickListener() {
+        FrameLayout italic = ((FrameLayout) this.findViewById(R.id.kitt_rich_italic));
+        italic.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 mEditor.setItalic();
@@ -407,14 +387,14 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
     private void initFontStyle2() {
 
         // 字体大小
-        xSize = ((FrameLayout) this.findViewById(R.id.kitt_rich_size));
-        xSize.setOnClickListener(new OnClickListener() {
+        FrameLayout size = ((FrameLayout) this.findViewById(R.id.kitt_rich_size));
+        size.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] location = new int[2];
                 mLayout.getLocationOnScreen(location);
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cancle.getLayoutParams();
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mCancel.getLayoutParams();
 
                 if (screenHeight - location[1] == dp2px(mContext, 44)) {
                     params.height = dp2px(mContext, 48);
@@ -428,8 +408,8 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
 
 
         // 字体颜色
-        xColor = ((FrameLayout) this.findViewById(R.id.kitt_rich_color));
-        xColor.setOnClickListener(new OnClickListener() {
+        FrameLayout color = ((FrameLayout) this.findViewById(R.id.kitt_rich_color));
+        color.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -437,7 +417,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
                 int[] location = new int[2];
                 mLayout.getLocationOnScreen(location);
 
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) cancle2.getLayoutParams();
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mCancel2.getLayoutParams();
 
                 if (screenHeight - location[1] == dp2px(mContext, 44)) {
                     params.height = dp2px(mContext, 48);
@@ -455,7 +435,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 if (listener != null)
-                    listener.clickPicIcon();
+                    listener.insertClick();
             }
         });
     }
@@ -465,33 +445,46 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         return (int) (dipValue * scale + 0.5f);
     }
 
-    public boolean isRevisedTextContent() {
-        return isRevised;
-    }
-
-    public void setListener(RichPicIconClickListener listener) {
+    /**
+     * 插入图片按钮点击的监听
+     */
+    public final void setOnInsertImageListener(OnInsertImageIconClickListener listener) {
         this.listener = listener;
     }
 
     /**
-     * TODO 转换Email回复格式
+     * 设置编辑器无数据时显示的提示内容
      *
-     * @param quotations  引用的String eg. 发件人：1334@qq.com\n收件人:xxx@qq.com\n日期:...
-     * @param contentHtml 具体邮件的内容html
+     * @param hint the text to be displayed when the text of the TextView is empty.
      */
-    public static String covertEmailHtml(String quotations, String contentHtml) {
+    public final void setHint(String hint) {
+        mEditor.setPlaceholder(hint);
+    }
+
+    /**
+     * 转换Email回复格式
+     *
+     * @param quotations the quotations text. eg. 发件人：1334@qq.com\n收件人:xxx@qq.com\n日期:...
+     * @param emailHtml  the email html text.
+     */
+    public static String covertEmailHtml(String quotations, String emailHtml) {
         quotations = quotations.replaceAll("\\\\n", "<br>");
         quotations = quotations.replaceAll("\n", "<br>");
         quotations = quotations.replaceAll("\\\\r", "<br>");
         quotations = quotations.replaceAll("\r", "<br>");
         quotations = "<br><br><br><br><font color=\"#282828\" size=\"2\"><b>--原始内容--<br><br></b></font><span style=\"background-color: #F1F1F1;width:calc(100% - 24px);display:-moz-inline-box;display:inline-block;border-radius:5px;padding:10px 5px 15px 20px;line-height:23px;font-size:13px;\">" + quotations;
         quotations = quotations + "</span><br><br><br><br>";
-        quotations = quotations + contentHtml;
+        quotations = quotations + emailHtml;
 
         return quotations;
     }
 
-    // TODO 转换超文本转换为普通文字
+    /**
+     * 转换超文本转换为普通文字
+     *
+     * @param htmlStr the html text.
+     * @return the text without tag.
+     */
     public static String convertHTMLToText(String htmlStr) {
 
         //先将换行符保留，然后过滤标签
@@ -506,7 +499,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
     }
 
     @Override
-    public void onClick(View v) {
+    public final void onClick(View v) {
 
         if (mPopupWindow2 != null)
             mPopupWindow2.dismiss();
@@ -514,28 +507,58 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         mEditor.setTextColor(((RoundImage) v).getBgColor());
     }
 
-    public void insertImage(String url) {
+    /**
+     * 插入图片地址到编辑器
+     */
+    public final void insertImage(String url) {
         mEditor.insertImage(url, "pic\" style=\"max-width:98%");
     }
 
-    public void insertImage(String url, String alt) {
+    /**
+     * 插入图片地址到编辑器
+     */
+    public final void insertImage(String url, String alt) {
         mEditor.insertImage(url, alt);
     }
 
-    public String getHtmlText() {
+    /**
+     * 获取编辑器数据
+     *
+     * @return the html text.
+     */
+    public final String getHtmlText() {
         return htmlText;
     }
 
-    public boolean isLoadComplete() {
+    /**
+     * 设置编辑器数据
+     *
+     * @param htmlText the html text.
+     */
+    public final void setContent(String htmlText) {
+
+        if (htmlText == null)
+            htmlText = "";
+
+        htmlText = changeImgWidth(htmlText);
+
+        mEditor.setHtml(htmlText);
+        this.htmlText = htmlText;
+    }
+
+    /**
+     * 编辑器是否加载数据完成
+     */
+    public final boolean isLoadComplete() {
         return isLoadComplete;
     }
 
-    public boolean isShowPop() {
+    private boolean isShowPop() {
 
         return mPopupWindow.isShowing() || mPopupWindow2.isShowing();
     }
 
-    public void closePop() {
+    private void closePop() {
 
         if (mPopupWindow != null && mPopupWindow.isShowing()) {
             mPopupWindow.dismiss();
@@ -546,16 +569,6 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
         }
     }
 
-
-    public void setContent(String htmlText) {
-
-        if (htmlText == null)
-            htmlText = "";
-
-        htmlText = changeImgWidth(htmlText);
-
-        mEditor.setHtml(htmlText);
-    }
 
     /**
      * @param htmlContent 原来的html
@@ -588,7 +601,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
 
 
     // TODO 生命周期进行调用
-    public void onResume() {
+    public final void onResume() {
 
         if (mKeyboardListener == null)
             return;
@@ -615,9 +628,9 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
                 mKeyboardListener.setIsSoftKeyboardOpened(true);
 
 
-                ViewGroup.LayoutParams layoutParams = mRootLayout.getLayoutParams();
-                layoutParams.height = RICK_LAYOUT_HEIGHT - mKeyboardListener.getRealKeyBoardHeight();
-                mRootLayout.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams layoutParams = mEditor.getLayoutParams();
+                layoutParams.height = RICK_LAYOUT_HEIGHT - mKeyboardListener.getRealKeyBoardHeight() - dp2px(mContext, 44);
+                mEditor.setLayoutParams(layoutParams);
             }
 
         } else {
@@ -627,10 +640,12 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
                 // 当前控件高度 < 全展开高度时 说明当前布局为键盘开启状态
                 mKeyboardListener.setIsSoftKeyboardOpened(false);
 
-                ViewGroup.LayoutParams layoutParams = mRootLayout.getLayoutParams();
-                layoutParams.height = RICK_LAYOUT_HEIGHT;
-                mRootLayout.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams layoutParams = mEditor.getLayoutParams();
+                layoutParams.height = RICK_LAYOUT_HEIGHT + dp2px(mContext, 44);
+                mEditor.setLayoutParams(layoutParams);
                 mLayout.setVisibility(VISIBLE);
+                mPopupWindow.dismiss();
+                mPopupWindow2.dismiss();
 
             } else {
                 // 当前控件为关闭键盘状态
@@ -640,7 +655,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
+    public final boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
             if (isShowPop()) {
                 closePop();
@@ -651,7 +666,7 @@ public class XRichTextEditor extends FrameLayout implements View.OnClickListener
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public final boolean onKeyDown(int keyCode, KeyEvent event) {
         if (isShowPop()) {
             closePop();
             return true;
