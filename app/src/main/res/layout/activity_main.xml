@@ -16,6 +16,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#F1F1F1" />
+        android:background="#F1F1F1"
+        android:onClick="click" />
+
+    <knight.rider.kitt.rich.RichTextEditor
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
