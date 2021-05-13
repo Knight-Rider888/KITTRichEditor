@@ -1,11 +1,12 @@
 package knight.rider.kitt.rich;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -57,15 +58,13 @@ public class SoftKeyBroadManager implements ViewTreeObserver.OnGlobalLayoutListe
         if (isFirst) {
 
             try {
-                Class<?> c = Class.forName("com.android.internal.R$dimen");
-                Object obj = c.newInstance();
-                Field field = c.getField("status_bar_height");
-                int x = Integer.parseInt(field.get(obj).toString());
-                statusBarHeight = activity.getResources().getDimensionPixelSize(x);
 
-                Field field2 = c.getField("navigation_bar_height");
-                int x2 = Integer.parseInt(field2.get(obj).toString());
-                navigationBarHeight = activity.getResources().getDimensionPixelSize(x2);
+                Resources resources = activity.getResources();
+                int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+                statusBarHeight = resources.getDimensionPixelSize(resourceId);
+
+                int resourceId2 = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+                navigationBarHeight = resources.getDimensionPixelSize(resourceId2);
 
                 if (heightDiff < 500) {
 
@@ -92,7 +91,7 @@ public class SoftKeyBroadManager implements ViewTreeObserver.OnGlobalLayoutListe
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(SoftKeyBroadManager.class.getSimpleName(), "计算可见区域", e);
             }
 
             isFirst = false;
