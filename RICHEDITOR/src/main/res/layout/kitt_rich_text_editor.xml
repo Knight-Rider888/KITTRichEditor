@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,8 +9,8 @@
     <jp.wasabeef.richeditor.RichEditor
         android:id="@+id/kitt_rich_editor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="44dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/kitt_rich_layout"
@@ -152,4 +152,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
