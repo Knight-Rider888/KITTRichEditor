@@ -157,7 +157,6 @@ public class RichWebView extends FrameLayout {
      *
      * @param quotations the quotations text. eg. 发件人：1334@qq.com\n收件人:xxx@qq.com\n日期:...
      * @param emailHtml  the email html text.
-     * @return
      */
     public static String covertEmailHtml(String quotations, String emailHtml) {
         quotations = quotations.replaceAll("\\\\n", "<br>");
