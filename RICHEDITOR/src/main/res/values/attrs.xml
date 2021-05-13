@@ -2,16 +2,16 @@
 <resources>
 
     <declare-styleable name="RoundImage">
-        <attr name="ui_round_color" format="color|reference" />
+        <attr name="temp_round_color" format="color|reference" />
     </declare-styleable>
 
 
-    <declare-styleable name="XRichTextEditor">
-        <attr name="x_rich_padding" format="dimension" />
-        <attr name="x_rich_paddingLeft" format="dimension" />
-        <attr name="x_rich_paddingRight" format="dimension" />
-        <attr name="x_rich_paddingTop" format="dimension" />
-        <attr name="x_rich_paddingBottom" format="dimension" />
+    <declare-styleable name="RichTextEditor">
+        <attr name="ui_rich_padding" format="dimension" />
+        <attr name="ui_rich_paddingLeft" format="dimension" />
+        <attr name="ui_rich_paddingRight" format="dimension" />
+        <attr name="ui_rich_paddingTop" format="dimension" />
+        <attr name="ui_rich_paddingBottom" format="dimension" />
     </declare-styleable>
 
 

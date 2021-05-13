@@ -22,7 +22,7 @@ class RoundImage extends RelativeLayout {
         super(context, attrs, defStyleAttr);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RoundImage);
-        bgColor = ta.getColor(R.styleable.RoundImage_ui_round_color, bgColor);
+        bgColor = ta.getColor(R.styleable.RoundImage_temp_round_color, bgColor);
         ta.recycle();
 
         // 加载布局

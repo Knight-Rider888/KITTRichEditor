@@ -23,49 +23,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#17499b" />
+            app:temp_round_color="#17499b" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#4598a2" />
+            app:temp_round_color="#4598a2" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#e6a20a" />
+            app:temp_round_color="#e6a20a" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#cb2635" />
+            app:temp_round_color="#cb2635" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#a96e99" />
+            app:temp_round_color="#a96e99" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#999999" />
+            app:temp_round_color="#999999" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#000000" />
+            app:temp_round_color="#000000" />
 
     </LinearLayout>
 
@@ -80,49 +80,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#d85821" />
+            app:temp_round_color="#d85821" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#eb3130" />
+            app:temp_round_color="#eb3130" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round10"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#7417f3" />
+            app:temp_round_color="#7417f3" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round11"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#3eabe1" />
+            app:temp_round_color="#3eabe1" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#76b53b" />
+            app:temp_round_color="#76b53b" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round13"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#ad8265" />
+            app:temp_round_color="#ad8265" />
 
         <knight.rider.kitt.rich.RoundImage
             android:id="@+id/kitt_rich_round14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:ui_round_color="#bb5e60" />
+            app:temp_round_color="#bb5e60" />
 
     </LinearLayout>
 
