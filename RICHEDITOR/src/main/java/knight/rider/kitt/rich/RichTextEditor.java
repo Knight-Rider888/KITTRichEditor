@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -575,6 +576,10 @@ public class RichTextEditor extends FrameLayout implements View.OnClickListener 
      * @return 改变img标签宽度以后的html
      */
     private String changeImgWidth(String htmlContent) {
+
+        if (TextUtils.isEmpty(htmlContent))
+            return htmlContent;
+
         Document doc_Dis = Jsoup.parse(htmlContent);
         Elements ele_Img = doc_Dis.getElementsByTag("img");
         if (ele_Img.size() != 0) {

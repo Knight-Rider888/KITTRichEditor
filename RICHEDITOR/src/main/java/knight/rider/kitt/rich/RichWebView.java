@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -218,6 +219,10 @@ public class RichWebView extends FrameLayout {
 
     // 图片不超过一屏幕
     private String changeImgWidth(String htmlContent) {
+
+        if (TextUtils.isEmpty(htmlContent))
+            return htmlContent;
+
         Document doc_Dis = Jsoup.parse(htmlContent);
         Elements ele_Img = doc_Dis.getElementsByTag("img");
         if (ele_Img.size() != 0) {

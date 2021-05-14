@@ -17,7 +17,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.Knight-Rider888:KITTRichEditor:1.0.1'
+implementation 'com.github.Knight-Rider888:KITTRichEditor:1.0.2'
 ```
 
 二、xml
