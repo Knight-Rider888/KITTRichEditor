@@ -52,7 +52,7 @@ xEditor.setOnInsertImageListener(new OnInsertImageIconClickListener() {
   }
 });
 // 设置编辑器无数据时显示的提示内容
-richWebview.setHint();
+xEditor.setHint();
 // 设置富文本内容
 xEditor.setContent();
 // 富文本内容是否加载完成
