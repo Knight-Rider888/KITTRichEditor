@@ -50,7 +50,7 @@ xEditor.setOnInsertImageListener(new OnInsertImageIconClickListener() {
     // 成功后调用方法插入图片
     xEditor.insertImage(url);
   }
-);
+});
 // 设置编辑器无数据时显示的提示内容
 richWebview.setHint();
 // 设置富文本内容
