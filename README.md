@@ -65,9 +65,9 @@ RichTextEditor.covertEmailHtml(String quotations, String emailHtml);
 RichTextEditor.convertHTMLToText(String htmlStr);
 // 请一定在生命周期调用同名方法
 @Override
-protected void onResume() {
+public void onResume() {
   super.onResume();
-  editor.onResume();
+  xEditor.onResume();
 }
 ```
 
